@@ -1,7 +1,9 @@
 <?php
 
-class AdminController {
-    public function index() {
-        echo "admin ne";
+class AdminController
+{
+    public function index()
+    {
+        require_once 'views/admin/dashboard.php';
     }
 }
