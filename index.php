@@ -9,6 +9,11 @@ switch ($path) {
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         echo "<br>See news ".$id;
         break;
+    case 'admin/login':
+        require_once 'controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->index();
+        break;
     case 'admin/dangnhap':
         require_once 'controllers/AdminController.php';
         $controller = new AdminController();
