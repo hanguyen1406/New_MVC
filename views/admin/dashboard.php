@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>Admin Dashboard</h1>
-    <a href="?url=news">Manage News</a>
+    <a href="?url=news">Đăng nhập admin đê</a>
 </body>
 </html>
