@@ -23,7 +23,6 @@ class NewsController
         }
         //gọi viewa để hiển thị chi tiết tin tức
         include 'views/news/detail.php';//truyền dữ liệu tin tức vào views
-
     }
 
 }
