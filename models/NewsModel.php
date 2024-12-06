@@ -4,7 +4,7 @@ class News {
 
     public function __construct() {
         // Kết nối cơ sở dữ liệu
-        $this->db = new mysqli('localhost', 'root', '', 'tlunews');
+        $this->db = new mysqli('localhost', 'root', '', 'news_db');
         if ($this->db->connect_error) {
             die("Kết nối thất bại: " . $this->db->connect_error);
         }
