@@ -61,5 +61,28 @@ class News extends BaseModel
         $stmt = $this->db->prepare($query);
         return $stmt->execute();
     }
-
+    public function update($id, $title, $content, $category_id, $public) {
+        // Kết nối cơ sở dữ liệu
+        $sql = 'UPDATE news SET title = ?, content = ?, category_id = ?, image = ? WHERE id = ?';
+        $stmt = $this->db->prepare($sql);
+        
+        if ($stmt === false) {
+            die('Lỗi khi chuẩn bị truy vấn: ' . $this->db->error);
+        }
+    
+        // Gán giá trị vào các tham số
+        $stmt->bind_param('ssiii', $title, $content, $category_id, $public, $id); // ssiii: chuỗi, số nguyên
+    
+        // Thực thi truy vấn
+        $stmt->execute();
+    
+        // Kiểm tra kết quả
+        $affectedRows = $stmt->affected_rows;
+    
+        // Đóng câu lệnh
+        $stmt->close();
+    
+        return $affectedRows; // Trả về số bản ghi được cập nhật
+    }
+    
 }
