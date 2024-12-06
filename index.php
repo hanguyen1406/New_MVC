@@ -9,8 +9,9 @@ session_start();
 switch ($path) {
 
     case 'admin/addnews':
-
-        
+        require_once 'controllers/NewsController.php';
+        $controller = new NewsController();
+        $controller->add(); // Gọi action index() để hiển thị danh sách tin tức
         break;
     case 'admin/login':
         require_once 'controllers/AdminController.php';
