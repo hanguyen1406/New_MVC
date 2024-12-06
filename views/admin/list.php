@@ -5,8 +5,9 @@
     <title>News List</title>
 </head>
 <body>
-    <h1>Trang tin tức cho khách</h1>
-    <a href="/admin">Đăng nhập admin</a>
+    <h1>News List cua Admin</h1>
+    <h1>Welcome, <?= htmlspecialchars($_SESSION['user']); ?>!</h1>
+    <a href="/admin/logout">Logout</a>
     <?php foreach ($news as $item): ?>
         <h2><?= $item['title']; ?></h2>
         <p><?= $item['content']; ?></p>

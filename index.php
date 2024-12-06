@@ -2,7 +2,8 @@
 
 // Get the URL path
 $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-echo $path;
+// echo $path;
+session_start();
 
 // Simple routing based on URL path
 switch ($path) {
@@ -14,15 +15,27 @@ switch ($path) {
     case 'admin/login':
         require_once 'controllers/AdminController.php';
         $controller = new AdminController();
-        $controller->index();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $controller->showLoginForm();
+        } else {
+            $controller->login();
+        }
         break;
-    case 'admin/dangnhap':
+    case 'admin/logout':
         require_once 'controllers/AdminController.php';
         $controller = new AdminController();
-        $controller->index();
+        $controller->logout();
         break;
-
-
+    case 'admin':
+        if (isset($_SESSION['user'])) {
+            require_once 'controllers/AdminController.php';
+            $controller = new AdminController();
+            $controller->newadmin();
+        } else {
+            header('Location: /admin/login');
+            exit();
+        }
+        break;
     case 'news': // Hiển thị danh sách tin tức
 
         require_once 'controllers/NewsController.php';

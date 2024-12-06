@@ -9,4 +9,6 @@ class NewsController
         $news = $newsModel->getAllNews();
         require_once 'views/news/list.php';
     }
+    
 }
+
