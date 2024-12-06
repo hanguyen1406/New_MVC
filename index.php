@@ -83,4 +83,14 @@ switch ($path) {
         $controller = new NewsController();
         $controller->search(); //goi phuong thuc search
         break;
+    case 'admin/editnews':
+        require_once 'controllers/NewsController.php';
+        $controller = new NewsController();
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        if ($id) {
+            $controller->edit($id);
+        } else {
+            echo "ID tin tức không hợp lệ!";
+        }
+        break;
 }

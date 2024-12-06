@@ -21,7 +21,7 @@ class NewsController
             echo"Tin tức ko tồn tại";
             return;
         }
-        //gọi viewa để hiển thị chi tiết tin tức
+        //gọi views để hiển thị chi tiết tin tức
         include 'views/news/detail.php';//truyền dữ liệu tin tức vào views
     }
     public function search() {
@@ -72,7 +72,43 @@ class NewsController
         header('Location: /admin/'); // Chuyển hướng về trang quản lý tin tức
         exit;
     }
-}
-  
+    
+
+    public function edit($id) {
+        require_once 'models/Category.php';
+        $newsModel = new News();
+        $categoryModel = new Category();
+
+        $news = $newsModel->getNews($id); // Lấy tin tức theo ID
+        $categories = $categoryModel->getAllCategory(); // Lấy tất cả danh mục
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $category_id = $_POST['category_id'];
+            $public = isset($_POST['public']) ? 1 : 0; // Kiểm tra xem tin tức có được công khai không
+
+            // Xử lý upload file
+            $fileName = $news['image']; // Giữ nguyên ảnh cũ nếu không tải ảnh mới
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = 'public/';
+                $newFileName = basename($_FILES['image']['name']);
+                $filePath = $uploadDir . $newFileName;
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $filePath)) {
+                    $fileName = $newFileName; // Cập nhật tên ảnh mới
+                } else {
+                    echo "Lỗi khi tải lên tệp.";
+                }
+            }
+
+            $newsModel->update($id, $title, $content, $category_id, $public, $fileName); // Cập nhật tin tức
+            header('Location: /admin/'); // Chuyển hướng về trang quản lý tin tức
+            exit;
+        }
+
+        include 'views/news/edit.php'; // Hiển thị form chỉnh sửa tin tức
+    }
+} 
 ?>
 
