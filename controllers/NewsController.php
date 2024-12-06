@@ -54,7 +54,7 @@ class NewsController
                     // Thêm bản ghi vào database cùng với đường dẫn ảnh
                     $newsModel = new News();
                     $newsModel->add($title, $content, $category_id, $fileName);
-                    header('Location: ?action=manage_news');
+                    header('Location: /admin');
                     exit;
                 } else {
                     echo "Lỗi khi tải lên tệp.";

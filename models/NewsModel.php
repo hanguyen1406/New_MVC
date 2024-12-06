@@ -16,7 +16,7 @@ class News extends BaseModel
     // Lấy danh sách tất cả tin tức
     public function getAllNews()
     {
-        $query = "SELECT * FROM news join categories on news.category_id= categories.id  ORDER BY created_at DESC";
+        $query = "SELECT news.*,categories.name FROM news join categories on news.category_id= categories.id  ORDER BY created_at DESC";
         $result = $this->db->query($query);
         return $result->fetch_all(MYSQLI_ASSOC); // Trả về danh sách dưới dạng mảng
     }

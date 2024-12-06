@@ -57,8 +57,8 @@
                     <td><?= htmlspecialchars($item['name'] ?? 'Uncategorized'); ?></td>
                     <td>
                         <div class="actions">
-                            <a href="admin/editnews?id=<?= $item['id']; ?>">Edit</a>
-                            <a href="admin/deletenews?id=<?= $item['id']; ?>" class="delete" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">Delete</a>
+                            <a href="/admin/editnews?id=<?= $item['id']; ?>">Edit</a>
+                            <a href="/admin/deletenews?id=<?= $item['id']; ?>" class="delete" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">Delete</a>
                         </div>
                     </td>
                 </tr>
