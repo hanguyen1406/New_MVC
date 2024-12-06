@@ -10,7 +10,7 @@ switch ($path) {
 
     case 'admin/add-new':
         $id = isset($_GET['id']) ? $_GET['id'] : null;
-        echo "<br>See news ".$id;
+        echo "<br>See news " . $id;
         break;
     case 'admin/login':
         require_once 'controllers/AdminController.php';
@@ -52,6 +52,18 @@ switch ($path) {
     default: // 404 nếu không có route phù hợp
         http_response_code(404);
         echo "404 Not Found";
+        break;
+
+
+    case 'news/detail': // Route xem chi tiết tin tức
+        require_once 'controllers/NewsController.php';
+        $controller = new NewsController();
+        $id = isset($_GET['id']) ? $_GET['id'] : null; // Lấy ID từ query string
+        if ($id) {
+            $controller->detail($id); // Gọi action detail() với tham số ID
+        } else {
+            echo "ID tin tức không hợp lệ!";
+        }
         break;
 }
 ?>
