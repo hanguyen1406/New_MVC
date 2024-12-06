@@ -16,7 +16,7 @@ class News extends BaseModel
     // Lấy danh sách tất cả tin tức
     public function getAllNews()
     {
-        $query = "SELECT * FROM news ORDER BY created_at DESC";
+        $query = "SELECT * FROM news join categories on news.category_id= categories.id  ORDER BY created_at DESC";
         $result = $this->db->query($query);
         return $result->fetch_all(MYSQLI_ASSOC); // Trả về danh sách dưới dạng mảng
     }
@@ -53,4 +53,13 @@ class News extends BaseModel
         $query = "INSERT INTO news (title, content, category_id, image) VALUES ('$title', '$content', $category_id, '$image')";
         return $this->db->query($query);
     }
+    //xóa tin tức
+    public function delete($id)
+    {
+        echo $id;
+        $query = "DELETE FROM news WHERE id = ".$id;
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute();
+    }
+
 }
