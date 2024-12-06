@@ -47,4 +47,10 @@ class News extends BaseModel
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    //thêm tin tức
+    public function add($title, $content, $category_id, $image)
+    {
+        $query = "INSERT INTO news (title, content, category_id, image) VALUES ('$title', '$content', $category_id, '$image')";
+        return $this->db->query($query);
+    }
 }
