@@ -24,7 +24,16 @@ class NewsController
         //gọi viewa để hiển thị chi tiết tin tức
         include 'views/news/detail.php';//truyền dữ liệu tin tức vào views
     }
-
+    public function search() {
+        if (isset($_GET['keyword'])) {
+            $keyword = trim($_GET['keyword']); // Lấy từ khóa từ query string
+            $newsModel = new News();
+            $news = $newsModel->searchNews($keyword); // Gọi Model để tìm kiếm
+            include 'views/news/search.php'; // Hiển thị kết quả tìm kiếm
+        } else {
+            echo "Vui lòng nhập từ khóa tìm kiếm!";
+        }
+    }
 }
 ?>
 

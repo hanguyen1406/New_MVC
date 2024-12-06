@@ -29,12 +29,22 @@ class News extends BaseModel
         return $result->fetch_all(MYSQLI_ASSOC)[0];
     }
     //Tìm kiếm tin tức
-    public function searchNews($keyword){
-    $sql = "SELECT * FROM news WHERE title LIKE :keyword OR content LIKE :keyword";
-    $stmt = $this->conn->prepare($sql);
-    $searchTerm = "%" . $keyword . "%";
-    $stmt->bindParam(':keyword', $searchTerm, PDO::PARAM_STR);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về danh sách các tin tức
+    
+    public function construct() {
+        try {
+            $this->db = new PDO('mysql:host=localhost;dbname=news_db', 'root', '');
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            die("Lỗi kết nối cơ sở dữ liệu: " . $e->getMessage());
+        }
     }
+
+    // Phương thức tìm kiếm tin tức
+    public function searchNews($keyword) {
+        $query = "SELECT * FROM news  where title  like '%".$keyword."%'";
+        $result = $this->db->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
