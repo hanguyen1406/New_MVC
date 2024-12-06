@@ -65,5 +65,11 @@ switch ($path) {
             echo "ID tin tức không hợp lệ!";
         }
         break;
+
+
+    case 'news/search': //dduowngf dan tim kiem
+        require_once './controllers/NewsController.php';
+        $controller = new NewsController();
+        $controller->search(); //goi phuong thuc search
+        break;
 }
-?>
