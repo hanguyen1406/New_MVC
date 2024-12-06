@@ -65,7 +65,14 @@ class NewsController
         }
         include 'views/news/add.php';
     }
-    
+    //xóa tin tức
+    public function delete($id) {
+        $newsModel = new News();
+        $newsModel->delete($id); // Gọi phương thức xóa tin tức
+        header('Location: /admin/'); // Chuyển hướng về trang quản lý tin tức
+        exit;
+    }
 }
+  
 ?>
 
