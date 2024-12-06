@@ -23,9 +23,9 @@ switch ($path) {
         break;
 
     case 'admin':
-        require_once 'controllers/NewsController.php';
-        $controller = new NewsController();
-        $controller->index(); // Gọi action index() để hiển thị danh sách tin tức
+        require_once 'controllers/AdminController.php';
+        $controller = new AdminController();
+        $controller->newadmin();
         break;
     case 'news': // Hiển thị danh sách tin tức
 
