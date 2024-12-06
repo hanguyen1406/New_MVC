@@ -8,7 +8,7 @@
     <h1>Trang tin tức cho khách</h1>
     <a href="/admin">Đăng nhập admin</a>
     <?php foreach ($news as $item): ?>
-        <h2><?= $item['title']; ?></h2>
+       <a href = "/news/detail?id=<?= $item['id']; ?>"> <h2><?= $item['title']; ?></h2></a>
         <p><?= $item['content']; ?></p>
     <?php endforeach; ?>
 </body>
