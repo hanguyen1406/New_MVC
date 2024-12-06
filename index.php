@@ -8,9 +8,9 @@ session_start();
 // Simple routing based on URL path
 switch ($path) {
 
-    case 'admin/add-new':
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
-        echo "<br>See news " . $id;
+    case 'admin/addnews':
+
+        
         break;
     case 'admin/login':
         require_once 'controllers/AdminController.php';
